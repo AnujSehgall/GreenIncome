@@ -100,7 +100,7 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
         mapFragment.getMapAsync(this);
     */
 
-        newlatlng = new LatLng(lat_url, lng_url);
+        //newlatlng = new LatLng(lat_url, lng_url);
 
         EditText dest = (EditText) findViewById(R.id.dest);
         destination = dest.getText().toString();
