@@ -48,26 +48,6 @@ public class Menu_Act extends AppCompatActivity {
 
         // Toast.makeText(getApplicationContext(), CName, Toast.LENGTH_SHORT).show();
 
-        if (CName.equals(Del)){
-
-            slid.add("https://s22.postimg.org/me6tty85d/Delhi1_opt.jpg");
-            slid.add("http://inspiretourism.com/wp-content/uploads/2013/11/Delhi1.jpg");
-            slid.add("http://www.indovacations.net/english/images/jama-masjid-delhi[1].jpg");
-            slid.add("http://www.indianmirror.com/temples/images/lotus-top-img.jpg");
-            slid.add("http://s3.travel.india.com/wp-content/uploads/red-fort-preset3.jpg");
-            slid.add("https://www.furnituredekho.com/blog/wp-content/uploads/2016/04/New-Delhi-67991.jpg");
-
-        }
-        else {
-
-            slid.add("https://s14.postimg.org/ggg626ogx/exper.jpg");
-            slid.add("https://s21.postimg.org/6ji8leg9j/medical.jpg");
-            slid.add("https://s14.postimg.org/pjszs81fl/shopping.jpg");
-            slid.add("https://s14.postimg.org/ggg626ogx/exper.jpg");
-            slid.add("https://s21.postimg.org/6ji8leg9j/medical.jpg");
-            slid.add("https://s14.postimg.org/pjszs81fl/shopping.jpg");
-
-        }
 
 
 

@@ -1,6 +1,7 @@
 package com.anuj.greenincome;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,8 +76,8 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
             public void onClick(View v) {
 
                 if (position == 1) {
-                  //  Intent i = new Intent(mContext, TransportAct.class);
-                    //mContext.startActivity(i);
+                    Intent i = new Intent(mContext, Carpool.class);
+                    mContext.startActivity(i);
 
                 }
             }
