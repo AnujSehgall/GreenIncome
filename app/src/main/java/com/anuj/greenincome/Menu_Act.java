@@ -15,8 +15,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class Menu_Act extends AppCompatActivity {
     private AlbumsAdapter adapter;
     private List<Album> albumList;
     ImageView slidingimage;
-    public int index=0;
+    public int index=0,no=5;
     public String CName,Del="DELHI";
 
     ArrayList<String> slid= new ArrayList<String>();
@@ -48,7 +48,8 @@ public class Menu_Act extends AppCompatActivity {
 
         // Toast.makeText(getApplicationContext(), CName, Toast.LENGTH_SHORT).show();
 
-
+        TextView sed = (TextView) findViewById(R.id.backdrop);
+        sed.setText(" Total number of seed is \n" + no);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarr);
@@ -68,7 +69,7 @@ public class Menu_Act extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         prepareAlbums();
-            Glide.with(this).load(R.drawable.logo).into((ImageView) findViewById(R.id.backdrop));
+          //  Glide.with(this).load(R.drawable.logo).into((ImageView) findViewById(R.id.backdrop));
 
     }
 

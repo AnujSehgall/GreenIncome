@@ -50,26 +50,19 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
 
         switch (position){
 
-            case 0: Glide.with(mContext).load("https://s12.postimg.org/62l1c0s7x/ptv.jpg").into(holder.thumbnail);
+            case 0: Glide.with(mContext).load("http://hunt4freebies.com/wp-content/uploads/2016/01/Recyclebank-Logo.png").into(holder.thumbnail);
                 break;
-            case 1: Glide.with(mContext).load("https://s21.postimg.org/ycwsdz96v/trpt.jpg").into(holder.thumbnail);
+            case 1: Glide.with(mContext).load("http://www.nrcarpool.org/carpool-logo.png").into(holder.thumbnail);
                 break;
-            case 2: Glide.with(mContext).load("https://s17.postimg.org/sd3cdsrin/hotels.jpg").into(holder.thumbnail);
+            case 2: Glide.with(mContext).load("https://mypathmyway.files.wordpress.com/2011/04/carbon_footprint.jpg").into(holder.thumbnail);
                 break;
-            case 3: Glide.with(mContext).load("https://s13.postimg.org/9k2hfny1j/navig.jpg").into(holder.thumbnail);
+            case 3: Glide.with(mContext).load("https://us.123rf.com/450wm/vxnaghiyev/vxnaghiyev1611/vxnaghiyev161101702/68271998-eco-charge-icon-illustration-isolated-vector-sign-symbol.jpg?ver=6").into(holder.thumbnail);
                 break;
-            case 4: Glide.with(mContext).load("https://s14.postimg.org/ggg626ogx/exper.jpg").into(holder.thumbnail);
+            case 4: Glide.with(mContext).load("http://www.freeiconspng.com/uploads/recycle-icon-20.png").into(holder.thumbnail);
                 break;
-            case 5: Glide.with(mContext).load("https://s9.postimg.org/j5wu62d1r/pubtpt.jpg").into(holder.thumbnail);
+            case 5: Glide.with(mContext).load("https://www.mageewp.com/wp-content/uploads/2016/08/Tips.jpg").into(holder.thumbnail);
                 break;
-            case 6: Glide.with(mContext).load("https://s13.postimg.org/8tz46rlh3/rest.jpg").into(holder.thumbnail);
-                break;
-            case 7:  Glide.with(mContext).load("http://elementarycarrental.com/wp-content/uploads/2014/12/holiday-car-rental.jpg").into(holder.thumbnail);
-                break;
-            case 8: Glide.with(mContext).load("https://s14.postimg.org/pjszs81fl/shopping.jpg").into(holder.thumbnail);
-                break;
-            case 9: Glide.with(mContext).load("https://s21.postimg.org/6ji8leg9j/medical.jpg").into(holder.thumbnail);
-                break;
+
         }
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +70,12 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
 
                 if (position == 1) {
                     Intent i = new Intent(mContext, Carpool.class);
+                    mContext.startActivity(i);
+
+                }
+
+                if (position==4){
+                    Intent i = new Intent(mContext, Recycler_guru.class);
                     mContext.startActivity(i);
 
                 }

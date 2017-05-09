@@ -22,6 +22,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -41,6 +42,32 @@ import static com.anuj.greenincome.R.id.map;
 
 public class Carpool extends AppCompatActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener {
 
+    class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+
+        private final View myContentsView;
+
+        MyInfoWindowAdapter(){
+            myContentsView = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+
+            TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.title));
+            tvTitle.setText(marker.getTitle());
+            TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snippet));
+            tvSnippet.setText(marker.getSnippet());
+
+            return myContentsView;
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+    }
     public int i;
     private GoogleMap mMap;
     private TrackGPS gps;
@@ -127,10 +154,11 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
 
                     j1 = mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(13.119821, 77.632499))
-                            .anchor(0.5f, 0.5f)
+                            .infoWindowAnchor(0.5f, 0.5f)
                             .title("Title1")
                             .snippet("Snippet1")
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                    ///mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
 
 
                     mMap.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
@@ -180,12 +208,16 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
         join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               j1.setVisible(false);
-                j2.setVisible(false);
-                j3.setVisible(false);
-                i1.setVisible(true);
-                i2.setVisible(true);
-                i3.setVisible(true);
+                if(destination != null) {
+                    j1.setVisible(false);
+                    j2.setVisible(false);
+                    j3.setVisible(false);
+                    i1.setVisible(true);
+                    i2.setVisible(true);
+                    i3.setVisible(true);
+                }
+                else
+                    Toast.makeText(getApplicationContext(),"Enter Destination",Toast.LENGTH_SHORT).show();
             }
         });
 
