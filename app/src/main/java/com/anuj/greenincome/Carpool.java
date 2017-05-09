@@ -1,6 +1,7 @@
 package com.anuj.greenincome;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -16,7 +17,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -25,6 +30,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -38,12 +44,16 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
     public int i;
     private GoogleMap mMap;
     private TrackGPS gps;
-    double longitude, newLat, newLng, lat_url,lng_url;
+    double longitude, newLat, newLng, lat_url,lng_url,lat,lng;
     double latitude;
     private static String TAG = Carpool.class.getSimpleName();
     private ProgressDialog pDialog;
-    public LatLng newlatlng,latLng;
+    public LatLng newlatlng,latLng,yellatlng;
+    public ImageView et_dest;
     public String destination;
+    public EditText dest;
+    public Marker j1,j2,j3,i1,i2,i3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +78,9 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
                 .findFragmentById(map);
         mapFragment.getMapAsync(this);
 
+        //yellatlng= "13.119167, 77.635861"
+        lat =13.119167; lng= 77.635861;
+        yellatlng= new LatLng(lat, lng);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -99,14 +112,102 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     */
+         dest = (EditText) findViewById(R.id.dest);
 
+
+
+        et_dest = (ImageView) findViewById(R.id.des_btn);
+        et_dest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                destination = dest.getText().toString();
+                hideSoftKeyboard();
+                //Toast.makeText(getApplicationContext(), destination,Toast.LENGTH_SHORT).show();
+                if(destination.equals("yelahanka")){
+
+                    j1 = mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(13.119821, 77.632499))
+                            .anchor(0.5f, 0.5f)
+                            .title("Title1")
+                            .snippet("Snippet1")
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+
+
+                    mMap.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
+
+                    j2 = mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(13.122391, 77.633094))
+                            .anchor(0.5f, 0.5f)
+                            .title("Title1")
+                            .snippet("Snippet1")
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                    j3 = mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(13.105748, 77.634098))
+                            .anchor(0.5f, 0.5f)
+                            .title("Title1")
+                            .snippet("Snippet1")
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                    i1 = mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(13.123873, 77.641645))
+                            .anchor(0.5f, 0.5f)
+                            .title("Title1")
+                            .snippet("Snippet1")
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
+                    i2 = mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(13.121386, 77.610504))
+                            .anchor(0.5f, 0.5f)
+                            .title("Title1")
+                            .snippet("Snippet1")
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
+                    i3 = mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(13.112254, 77.605357))
+                            .anchor(0.5f, 0.5f)
+                            .title("Title1")
+                            .snippet("Snippet1")
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
+
+                }
+                else
+                    Toast.makeText(Carpool.this,"Wrong destination Entered ", Toast.LENGTH_SHORT).show();
+
+            }
+        });
         //newlatlng = new LatLng(lat_url, lng_url);
 
-        EditText dest = (EditText) findViewById(R.id.dest);
-        destination = dest.getText().toString();
-        Toast.makeText(getApplicationContext(), destination,Toast.LENGTH_SHORT).show();
+        Button intiate = (Button) findViewById(R.id.inti);
+        Button join =(Button) findViewById(R.id.join);
+
+        join.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               j1.setVisible(false);
+                j2.setVisible(false);
+                j3.setVisible(false);
+                i1.setVisible(true);
+                i2.setVisible(true);
+                i3.setVisible(true);
+            }
+        });
+
+        intiate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i1.setVisible(false);
+                i2.setVisible(false);
+                i3.setVisible(false);
+                j1.setVisible(true);
+                j2.setVisible(true);
+                j3.setVisible(true);
+            }
+        });
 
 
+    }
+    private void hideSoftKeyboard(){
+        if(getCurrentFocus()!=null && getCurrentFocus() instanceof EditText){
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(et_dest.getWindowToken(), 0);
+        }
     }
 
 

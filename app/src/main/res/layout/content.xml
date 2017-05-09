@@ -43,13 +43,28 @@
 
         <ImageView
             android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_marginTop="25dp"
             android:layout_alignParentEnd="true"
             android:background="@drawable/ic_dest"
             android:id="@+id/des_btn"/>
 
 
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:text="Initiate Carpool"
+            android:id="@+id/inti"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/join"
+            android:text="Join Carpool"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 

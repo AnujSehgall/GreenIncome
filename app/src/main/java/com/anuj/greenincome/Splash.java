@@ -37,6 +37,7 @@ public class Splash extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("AlertDialog");
         builder.setView(subView);
+
         AlertDialog alertDialog = builder.create();
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
