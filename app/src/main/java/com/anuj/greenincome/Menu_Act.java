@@ -154,7 +154,7 @@ public class Menu_Act extends AppCompatActivity {
         a = new Album("Ecocharge");
         albumList.add(a);
 
-        a = new Album("Recycler guru");
+        a = new Album("Recycler");
         albumList.add(a);
 
         a = new Album("Tips");

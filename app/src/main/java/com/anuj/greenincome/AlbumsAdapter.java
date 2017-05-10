@@ -84,7 +84,10 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
                     mContext.startActivity(i);
                 }
 
-
+                if (position == 3){
+                    Intent i = new Intent(mContext,Echocharge.class);
+                    mContext.startActivity(i);
+                }
 
 
 
