@@ -19,7 +19,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -39,11 +38,10 @@ import java.util.List;
 
 import static com.anuj.greenincome.R.id.map;
 
-public class Carpool extends AppCompatActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener {
+public class Recycler extends AppCompatActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener{
 
-
-    public int i;
     private GoogleMap mMap;
+    public int i;
     private TrackGPS gps;
     double longitude, newLat, newLng, lat_url,lng_url,lat,lng;
     double latitude;
@@ -55,22 +53,22 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
     public EditText dest;
     public Marker j1,j2,j3,i1,i2,i3;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_carpool);
+        setContentView(R.layout.activity_recycler);
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (ContextCompat.checkSelfPermission(Carpool.this,
+        if (ContextCompat.checkSelfPermission(Recycler.this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
 
             // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(Carpool.this,
+            if (ActivityCompat.shouldShowRequestPermissionRationale(Recycler.this,
                     android.Manifest.permission.ACCESS_FINE_LOCATION)) {
             } else {
-                ActivityCompat.requestPermissions(Carpool.this,
+                ActivityCompat.requestPermissions(Recycler.this,
                         new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},i);
             }
         }
@@ -92,7 +90,7 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
 
-        gps = new TrackGPS(Carpool.this);
+        gps = new TrackGPS(Recycler.this);
 
 
         if(gps.canGetLocation()){
@@ -113,7 +111,6 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     */
-         dest = (EditText) findViewById(R.id.dest);
 
 
 
@@ -121,10 +118,9 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
         et_dest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                destination = dest.getText().toString();
                 hideSoftKeyboard();
                 //Toast.makeText(getApplicationContext(), destination,Toast.LENGTH_SHORT).show();
-                if(destination.equals("yelahanka")){
+
 
                     j1 = mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(13.119821, 77.632499))
@@ -168,47 +164,12 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
                             .snippet("Snippet1")
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
 
-                }
-                else
-                    Toast.makeText(Carpool.this,"Wrong destination Entered ", Toast.LENGTH_SHORT).show();
 
             }
-        });
+        });}
         //newlatlng = new LatLng(lat_url, lng_url);
 
-        Button intiate = (Button) findViewById(R.id.inti);
-        Button join =(Button) findViewById(R.id.join);
 
-        join.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(destination != null) {
-                    j1.setVisible(false);
-                    j2.setVisible(false);
-                    j3.setVisible(false);
-                    i1.setVisible(true);
-                    i2.setVisible(true);
-                    i3.setVisible(true);
-                }
-                else
-                    Toast.makeText(getApplicationContext(),"Enter Destination",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        intiate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i1.setVisible(false);
-                i2.setVisible(false);
-                i3.setVisible(false);
-                j1.setVisible(true);
-                j2.setVisible(true);
-                j3.setVisible(true);
-            }
-        });
-
-
-    }
     private void hideSoftKeyboard(){
         if(getCurrentFocus()!=null && getCurrentFocus() instanceof EditText){
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -230,7 +191,7 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        Geocoder gc = new Geocoder(Carpool.this);
+        Geocoder gc = new Geocoder(Recycler.this);
 
         List<Address> list = null;
         try {
@@ -255,7 +216,7 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
     private void addOldMark(double lat, double lng) {
         LatLng ll = new LatLng(lat, lng);
 
-        Geocoder gc = new Geocoder(Carpool.this);
+        Geocoder gc = new Geocoder(Recycler.this);
 
         List<android.location.Address> list = null;
 
