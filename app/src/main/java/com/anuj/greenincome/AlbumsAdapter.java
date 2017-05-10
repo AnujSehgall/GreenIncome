@@ -68,11 +68,20 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
             @Override
             public void onClick(View v) {
 
+                if (position == 0) {
+                    Intent i = new Intent(mContext, RecycleBank.class);
+                    mContext.startActivity(i);
+
+                }
                 if (position == 1) {
                     Intent i = new Intent(mContext, Carpool.class);
                     mContext.startActivity(i);
 
                 }
+
+
+
+
 
                 if (position==4){
                     Intent i = new Intent(mContext, Recycler.class);

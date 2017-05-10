@@ -48,7 +48,9 @@
             android:label="@string/title_activity_recycler_guru" />
         <activity
             android:name=".Recycler"
-            android:label="@string/title_activity_recycler"></activity>
+            android:label="@string/title_activity_recycler" />
+        <activity android:name=".EchoGreen" />
+        <activity android:name=".RecycleBank"></activity>
     </application>
 
 </manifest>
