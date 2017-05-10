@@ -33,6 +33,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -57,6 +59,7 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
     public Marker j1,j2,j3,i1,i2,i3;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +78,8 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
                         new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},i);
             }
         }
+
+
 
         Button cht = (Button) findViewById(R.id.chat);
         cht.setOnClickListener(new View.OnClickListener() {

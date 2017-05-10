@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.anuj.greenincome.activity.DeviceControlActivity;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -75,6 +76,11 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
                 }
                 if (position == 1) {
                     Intent i = new Intent(mContext, Carpool.class);
+                    mContext.startActivity(i);
+
+                }
+                if (position == 2) {
+                    Intent i = new Intent(mContext, DeviceControlActivity.class);
                     mContext.startActivity(i);
 
                 }

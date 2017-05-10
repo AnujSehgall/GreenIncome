@@ -12,11 +12,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.BATTERY_STATS" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application
         android:name=".AppCont"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -50,7 +52,18 @@
         <activity android:name=".RecycleBank" />
         <activity android:name=".Tips" />
         <activity android:name=".Echocharge" />
-        <activity android:name=".Chat_act"></activity>
+        <activity android:name=".Chat_act" />
+        <activity android:name=".activity.DeviceControlActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/AppTheme1"/>
+
+        <activity android:name=".activity.SettingsActivity"
+            android:theme="@style/AppTheme1"></activity>
+        <activity
+        android:name=".bluetooth.DeviceListActivity"
+        android:label="@string/select_device"
+        android:theme="@style/DialogTheme"
+            />
     </application>
 
 </manifest>

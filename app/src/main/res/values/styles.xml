@@ -31,6 +31,7 @@
 
     </style>
 
+    <style name="DialogTheme" parent="@android:style/Theme.Holo.Dialog"/>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
@@ -40,4 +41,5 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme1" parent="android:Theme.Holo"/>
 </resources>
