@@ -79,6 +79,11 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
 
                 }
 
+                if (position == 5){
+                    Intent i = new Intent(mContext,Tips.class);
+                    mContext.startActivity(i);
+                }
+
 
 
 

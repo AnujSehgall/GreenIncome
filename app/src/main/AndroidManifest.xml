@@ -50,7 +50,8 @@
             android:name=".Recycler"
             android:label="@string/title_activity_recycler" />
         <activity android:name=".EchoGreen" />
-        <activity android:name=".RecycleBank"></activity>
+        <activity android:name=".RecycleBank" />
+        <activity android:name=".Tips"></activity>
     </application>
 
 </manifest>
