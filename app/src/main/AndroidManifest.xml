@@ -43,14 +43,11 @@
 
         <activity
             android:name=".Carpool"
-            android:label="@string/title_activity_carpool" />
-        <activity
-            android:name=".Recycler_guru"
-            android:label="@string/title_activity_recycler_guru" />
+            android:label="Carticipate" />
+
         <activity
             android:name=".Recycler"
-            android:label="@string/title_activity_recycler" />
-        <activity android:name=".EchoGreen" />
+            android:label="Recycler" />
         <activity android:name=".RecycleBank" />
         <activity android:name=".Tips" />
         <activity android:name=".Echocharge"></activity>

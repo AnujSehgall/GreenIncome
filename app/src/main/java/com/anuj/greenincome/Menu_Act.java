@@ -1,5 +1,6 @@
 package com.anuj.greenincome;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -7,15 +8,19 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionMenu;
 
@@ -29,7 +34,7 @@ public class Menu_Act extends AppCompatActivity {
     private List<Album> albumList;
     ImageView slidingimage;
     public int index=0,no=5;
-    public String CName,Del="DELHI";
+    public String CName,Del="DELHI",uname;
 
     ArrayList<String> slid= new ArrayList<String>();
 
@@ -37,11 +42,54 @@ public class Menu_Act extends AppCompatActivity {
     com.github.clans.fab.FloatingActionButton floatingActionButton1;
     com.github.clans.fab.FloatingActionButton floatingActionButton2;
     com.github.clans.fab.FloatingActionButton floatingActionButton3;
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_);
+        LayoutInflater inflater = LayoutInflater.from(Menu_Act.this);
+        View subView = inflater.inflate(R.layout.custom_dialog, null);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String rname = preferences.getString("Name", "");
+        if(!rname.equalsIgnoreCase(""))
+        {
+            AlertDialog alertDialog = builder.create(); /* Edit the value here*/
+
+        }
+
+        final EditText subEditText = (EditText)subView.findViewById(R.id.et_input);
+
+        builder = new AlertDialog.Builder(this);
+        builder.setTitle("AlertDialog");
+        builder.setView(subView);
+        builder.setCancelable(false);
+
+        uname = subEditText.getText().toString();
+
+        SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edito = preferences.edit();
+        edito.putString("Name",uname);
+        edito.apply();
+
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //textInfo.setText(subEditText.getText().toString());
+                Toast.makeText(getApplicationContext(),"Welcome "+subEditText.getText().toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(Menu_Act.this, "Cancel", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        builder.show();
 
         SharedPreferences Cname = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         CName = Cname.getString("CityName", "");
@@ -49,7 +97,7 @@ public class Menu_Act extends AppCompatActivity {
         // Toast.makeText(getApplicationContext(), CName, Toast.LENGTH_SHORT).show();
 
         TextView sed = (TextView) findViewById(R.id.backdrop);
-        sed.setText(" Total number of seed is \n" + no);
+        sed.setText(uname + ", you have "+no+" seeds in your account");
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarr);
@@ -69,8 +117,6 @@ public class Menu_Act extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         prepareAlbums();
-          //  Glide.with(this).load(R.drawable.logo).into((ImageView) findViewById(R.id.backdrop));
-
     }
 
     /**
