@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.BATTERY_STATS"/>
+    <uses-permission android:name="android.permission.BATTERY_STATS" />
 
     <application
         android:name=".AppCont"
@@ -44,13 +44,13 @@
         <activity
             android:name=".Carpool"
             android:label="Carticipate" />
-
         <activity
             android:name=".Recycler"
             android:label="Recycler" />
         <activity android:name=".RecycleBank" />
         <activity android:name=".Tips" />
-        <activity android:name=".Echocharge"></activity>
+        <activity android:name=".Echocharge" />
+        <activity android:name=".Chat_act"></activity>
     </application>
 
 </manifest>

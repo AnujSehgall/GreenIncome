@@ -2,6 +2,7 @@ package com.anuj.greenincome;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -74,6 +75,15 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
                         new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},i);
             }
         }
+
+        Button cht = (Button) findViewById(R.id.chat);
+        cht.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent f = new Intent(Carpool.this,Chat_act.class);
+                startActivity(f);
+            }
+        });
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(map);

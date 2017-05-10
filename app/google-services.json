@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "176861387222",
+    "firebase_url": "https://greenincome-8eaf6.firebaseio.com",
+    "project_id": "greenincome-8eaf6",
+    "storage_bucket": "greenincome-8eaf6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:176861387222:android:d5770934237061d6",
+        "android_client_info": {
+          "package_name": "com.anuj.greenincome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "176861387222-lqntu60mf4g0r0j0r36vfrmtagvhv071.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anuj.greenincome",
+            "certificate_hash": "46a7e5f6f4c1ea159cf05deb7f5687c96424deb7"
+          }
+        },
+        {
+          "client_id": "176861387222-n47v4bk1buf08an7b0oif0s7jvlgi0kr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB41XElqMnTyVuDdZTPcb2FTE0FArM5bug"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "176861387222-n47v4bk1buf08an7b0oif0s7jvlgi0kr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
