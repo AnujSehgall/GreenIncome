@@ -51,17 +51,17 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
 
         switch (position){
 
-            case 0: Glide.with(mContext).load("http://hunt4freebies.com/wp-content/uploads/2016/01/Recyclebank-Logo.png").into(holder.thumbnail);
+            case 0: Glide.with(mContext).load("http://1.bp.blogspot.com/-OqDKgSvTx1w/VYsEuNy-YmI/AAAAAAAATto/kVtv_szgrZQ/s1600/MoneyWallet%2B2.0.png").into(holder.thumbnail);
                 break;
-            case 1: Glide.with(mContext).load("http://www.nrcarpool.org/carpool-logo.png").into(holder.thumbnail);
+            case 1: Glide.with(mContext).load("https://www.issaquahhighlands.com/wp-content/uploads/2017/03/car-icon.png").into(holder.thumbnail);
                 break;
-            case 2: Glide.with(mContext).load("https://mypathmyway.files.wordpress.com/2011/04/carbon_footprint.jpg").into(holder.thumbnail);
+            case 2: Glide.with(mContext).load("http://typren.co.uk/wp-content/uploads/2015/10/Carbon-footprint-icon.png").into(holder.thumbnail);
                 break;
-            case 3: Glide.with(mContext).load("https://us.123rf.com/450wm/vxnaghiyev/vxnaghiyev1611/vxnaghiyev161101702/68271998-eco-charge-icon-illustration-isolated-vector-sign-symbol.jpg?ver=6").into(holder.thumbnail);
+            case 3: Glide.with(mContext).load("https://lh5.ggpht.com/RnhUVhf6TNKNq2I0nfGTivYo29tscz2ibXgrnSxikNcV0oE9T9W9PoRcvjRfidx24s-Q=w300").into(holder.thumbnail);
                 break;
-            case 4: Glide.with(mContext).load("http://www.freeiconspng.com/uploads/recycle-icon-20.png").into(holder.thumbnail);
+            case 4: Glide.with(mContext).load("http://nutritionsmart.com/wp-content/uploads/2016/03/bigstock-recycle-green-flat-icon-recycl-86555183-1.jpg").into(holder.thumbnail);
                 break;
-            case 5: Glide.with(mContext).load("https://www.mageewp.com/wp-content/uploads/2016/08/Tips.jpg").into(holder.thumbnail);
+            case 5: Glide.with(mContext).load("http://www.iconarchive.com/download/i86033/graphicloads/100-flat-2/bulb.ico").into(holder.thumbnail);
                 break;
 
         }
