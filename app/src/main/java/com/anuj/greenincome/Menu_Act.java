@@ -140,10 +140,7 @@ public class Menu_Act extends AppCompatActivity {
      * Initializing collapsing toolbar
      * Will show and hide the toolbar title on scroll
      */
-
-
-
-    private void initCollapsingToolbar() {
+  private void initCollapsingToolbar() {
         final CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(" ");
