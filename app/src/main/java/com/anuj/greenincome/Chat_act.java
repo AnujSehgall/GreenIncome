@@ -1,7 +1,9 @@
 package com.anuj.greenincome;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -14,7 +16,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,12 +42,13 @@ public class Chat_act extends AppCompatActivity {
     private ImageButton mPhotoPickerButton;
     private EditText mMessageEditText;
     private Button mSendButton;
-
+    public static final int RC_SIGN_IN = 1;
     private String mUsername;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private ChildEventListener childEventListener;
-
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +58,7 @@ public class Chat_act extends AppCompatActivity {
         mUsername = ANONYMOUS;
 
         firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = firebaseDatabase.getReference().child("childeren");
         // Initialize references to views
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -109,10 +117,57 @@ public class Chat_act extends AppCompatActivity {
             }
         });
 
+
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user!= null){
+                    OnSignedInInitialize(user.getDisplayName());
+                }
+                else {
+                    OnSignedOutCleanup();
+                    startActivityForResult(
+                            AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                                    .setIsSmartLockEnabled(false)
+                            .setProviders(
+                                    AuthUI.EMAIL_PROVIDER,
+                                    AuthUI.GOOGLE_PROVIDER)
+                    .build(),
+                    RC_SIGN_IN);
+                }
+            }
+        };
+    }
+
+    private void OnSignedInInitialize(String displayName) {
+
+        mUsername = displayName;
+        attachdatabase();
+
+    }
+
+    private void OnSignedOutCleanup(){
+        mUsername = ANONYMOUS;
+        mMessageAdapter.clear();
+        detachbase();
+
+    }
+
+    private void detachbase() {
+        if (childEventListener != null) {
+            databaseReference.removeEventListener(childEventListener);
+            childEventListener= null;
+        }
+    }
+
+    private void attachdatabase(){
+        if (childEventListener == null){
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                FriendlyMessage friendlyMessage =dataSnapshot.getValue(FriendlyMessage.class);
+                FriendlyMessage friendlyMessage = dataSnapshot.getValue(FriendlyMessage.class);
                 mMessageAdapter.add(friendlyMessage
                 );
             }
@@ -139,8 +194,7 @@ public class Chat_act extends AppCompatActivity {
         };
 
         databaseReference.addChildEventListener(childEventListener);
-    }
-
+    }}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -151,5 +205,36 @@ public class Chat_act extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (authStateListener != null){
+            firebaseAuth.removeAuthStateListener(authStateListener);
+        }
+        detachbase();
+        mMessageAdapter.clear();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
+                // Sign-in succeeded, set up the UI
+                Toast.makeText(this, "Signed in!", Toast.LENGTH_SHORT).show();
+            } else if (resultCode == RESULT_CANCELED) {
+                // Sign in was canceled by the user, finish the activity
+                Toast.makeText(this, "Sign in canceled", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        firebaseAuth.addAuthStateListener(authStateListener);
     }
 }
