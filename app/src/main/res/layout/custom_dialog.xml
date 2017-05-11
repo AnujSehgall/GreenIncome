@@ -5,18 +5,18 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="10dp" >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter your name"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginBottom="10dp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <EditText
         android:id="@+id/et_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your name here"
+
         >
         <requestFocus />
     </EditText>
+    </android.support.design.widget.TextInputLayout>
 </LinearLayout>

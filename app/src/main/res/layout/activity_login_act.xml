@@ -8,9 +8,24 @@
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/googleBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="40dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="183dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skip sign in "
+        android:textAllCaps="false"
+        android:background="#ffffff"
+        android:elevation="4dp"
+        android:id="@+id/skipbut"
+        android:backgroundTint="@color/cardview_light_background"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="18dp" />
 </RelativeLayout>

@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,7 +35,7 @@ public class Menu_Act extends AppCompatActivity {
     private List<Album> albumList;
     ImageView slidingimage;
     public int index=0,no=5;
-    public String CName,Del="DELHI",uname;
+    public String CName,Del="DELHI",uname="user";
 
     ArrayList<String> slid= new ArrayList<String>();
 
@@ -52,36 +53,36 @@ public class Menu_Act extends AppCompatActivity {
         View subView = inflater.inflate(R.layout.custom_dialog, null);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String rname = preferences.getString("Name", "");
-        if(!rname.equalsIgnoreCase(""))
-        {
-            AlertDialog alertDialog = builder.create(); /* Edit the value here*/
 
-        }
+
 
         final EditText subEditText = (EditText)subView.findViewById(R.id.et_input);
 
         builder = new AlertDialog.Builder(this);
-        //builder.setTitle("AlertDialog");
+        builder.setTitle("Hello user.");
         builder.setView(subView);
         builder.setCancelable(false);
-
-
-        uname = subEditText.getText().toString();
-
-        SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor edito = preferences.edit();
-        edito.putString("Name",uname);
-        edito.apply();
 
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //textInfo.setText(subEditText.getText().toString());
+                uname = subEditText.getText().toString();
                 Toast.makeText(getApplicationContext(),"Welcome "+subEditText.getText().toString(),Toast.LENGTH_SHORT).show();
+                TextView txtView = (TextView) findViewById(R.id.backdrop);
+                txtView.setText("Hello "+ uname + ", you have "+no+" seeds in your account");
+                AlphaAnimation fadeIn = new AlphaAnimation(0.0f , 1.0f ) ;
+                txtView.startAnimation(fadeIn);
+                fadeIn.setDuration(1200);
+                fadeIn.setFillAfter(true);
             }
         });
+
+        SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edito = preferences.edit();
+        edito.putString("Name",uname);
+        edito.apply();
 
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
@@ -97,8 +98,10 @@ public class Menu_Act extends AppCompatActivity {
 
         // Toast.makeText(getApplicationContext(), CName, Toast.LENGTH_SHORT).show();
 
-        TextView sed = (TextView) findViewById(R.id.backdrop);
-        sed.setText(uname + ", you have "+no+" seeds in your account");
+
+
+
+
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarr);
