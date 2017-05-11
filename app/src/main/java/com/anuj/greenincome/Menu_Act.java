@@ -62,9 +62,10 @@ public class Menu_Act extends AppCompatActivity {
         final EditText subEditText = (EditText)subView.findViewById(R.id.et_input);
 
         builder = new AlertDialog.Builder(this);
-        builder.setTitle("AlertDialog");
+        //builder.setTitle("AlertDialog");
         builder.setView(subView);
         builder.setCancelable(false);
+
 
         uname = subEditText.getText().toString();
 
