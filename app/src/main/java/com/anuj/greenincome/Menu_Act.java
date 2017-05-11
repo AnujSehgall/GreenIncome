@@ -2,12 +2,15 @@ package com.anuj.greenincome;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -36,7 +39,7 @@ public class Menu_Act extends AppCompatActivity {
     private AlbumsAdapter adapter;
     private List<Album> albumList;
     ImageView slidingimage;
-    public int index=0,no=5;
+    public int index=0,no=5,i;
     public String CName,Del="DELHI",uname="user";
     Animation animFadein;
 
@@ -54,6 +57,19 @@ public class Menu_Act extends AppCompatActivity {
         setContentView(R.layout.activity_menu_);
         LayoutInflater inflater = LayoutInflater.from(Menu_Act.this);
         View subView = inflater.inflate(R.layout.custom_dialog, null);
+
+        if (ContextCompat.checkSelfPermission(Menu_Act.this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(Menu_Act.this,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+            } else {
+                ActivityCompat.requestPermissions(Menu_Act.this,
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},i);
+            }
+        }
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -101,18 +117,6 @@ public class Menu_Act extends AppCompatActivity {
         });
 
         builder.show();
-
-        SharedPreferences Cname = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        CName = Cname.getString("CityName", "");
-
-        // Toast.makeText(getApplicationContext(), CName, Toast.LENGTH_SHORT).show();
-
-
-
-
-
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarr);
         setSupportActionBar(toolbar);
 
