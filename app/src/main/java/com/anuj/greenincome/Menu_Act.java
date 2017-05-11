@@ -18,6 +18,8 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,6 +38,7 @@ public class Menu_Act extends AppCompatActivity {
     ImageView slidingimage;
     public int index=0,no=5;
     public String CName,Del="DELHI",uname="user";
+    Animation animFadein;
 
     ArrayList<String> slid= new ArrayList<String>();
 
@@ -54,7 +57,11 @@ public class Menu_Act extends AppCompatActivity {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
+        final ImageView imageView = (ImageView) findViewById(R.id.seedimg);
 
+
+        animFadein = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.bounce);
 
         final EditText subEditText = (EditText)subView.findViewById(R.id.et_input);
 
@@ -72,6 +79,8 @@ public class Menu_Act extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Welcome "+subEditText.getText().toString(),Toast.LENGTH_SHORT).show();
                 TextView txtView = (TextView) findViewById(R.id.backdrop);
                 txtView.setText("Hello "+ uname + ", you have "+no+" seeds in your account");
+
+                imageView.startAnimation(animFadein);
                 AlphaAnimation fadeIn = new AlphaAnimation(0.0f , 1.0f ) ;
                 txtView.startAnimation(fadeIn);
                 fadeIn.setDuration(1200);
