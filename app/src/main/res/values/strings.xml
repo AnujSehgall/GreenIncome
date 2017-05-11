@@ -20,7 +20,6 @@
     <!-- prefence keys, no translation needed -->
 
 
-
     <string name="msg_not_connected">not connected</string>
     <string name="msg_connecting">connecting…</string>
     <string name="msg_connected">connected</string>

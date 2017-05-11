@@ -53,17 +53,18 @@
         <activity android:name=".Tips" />
         <activity android:name=".Echocharge" />
         <activity android:name=".Chat_act" />
-        <activity android:name=".activity.DeviceControlActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@style/AppTheme1"/>
-
-        <activity android:name=".activity.SettingsActivity"
-            android:theme="@style/AppTheme1"></activity>
         <activity
-        android:name=".bluetooth.DeviceListActivity"
-        android:label="@string/select_device"
-        android:theme="@style/DialogTheme"
-            />
+            android:name=".activity.DeviceControlActivity"
+            android:theme="@style/AppTheme1"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:theme="@style/AppTheme1" />
+        <activity
+            android:name=".bluetooth.DeviceListActivity"
+            android:label="@string/select_device"
+            android:theme="@style/DialogTheme" />
+        <activity android:name=".Login_act"></activity>
     </application>
 
 </manifest>
