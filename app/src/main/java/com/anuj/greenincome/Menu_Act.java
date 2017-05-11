@@ -160,30 +160,7 @@ public class Menu_Act extends AppCompatActivity {
                     collapsingToolbar.setTitle(getString(R.string.app_name));
                     isShow = true;
 
-                    materialDesignFAM = (FloatingActionMenu) findViewById(R.id.material_design_android_floating_action_menu);
-                    floatingActionButton1 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item1);
-                    floatingActionButton2 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item2);
-                    floatingActionButton3 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item3);
 
-                    floatingActionButton1.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            //TODO something when floating action menu first item clicked
-                          //  Intent i = new Intent(getApplicationContext(),Main2Activity.class);
-                            //startActivity(i);
-                        }
-                    });
-                    floatingActionButton2.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            //TODO something when floating action menu second item clicked
-
-                        }
-                    });
-                    floatingActionButton3.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            //TODO something when floating action menu third item clicked
-
-                        }
-                    });
 
                 } else if (isShow) {
                     collapsingToolbar.setTitle(" ");
