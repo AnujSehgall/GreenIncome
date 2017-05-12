@@ -58,12 +58,12 @@
 
     <string name="need_clean">Clear previous command</string>
     <string name="need_clean_summary">Cleanup command view after sending</string>
-    <string name="title_1">Cool card</string>
-    <string name="title_2">Ok card</string>
-    <string name="title_3">Bad card</string>
-    <string name="title_4">Ugly card</string>
+    <string name="title_1">Mc Donalds</string>
+    <string name="title_2">KFC</string>
+    <string name="title_3">PayTm</string>
+    <string name="title_4">CrownIt</string>
 
-    <string name="text_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam eget ligula eu lectus lobortis condimentum.</string>
+    <string name="text_1">Cost - 300 seeds</string>
 
 
 

@@ -20,6 +20,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anuj.greenincome.DeviceData;
 import com.anuj.greenincome.R;
@@ -474,6 +475,11 @@ public final class DeviceControlActivity extends BasicActivity {
 
                     case MESSAGE_READ:
                         final String readMessage = (String) msg.obj;
+                        if(readMessage.contains("0")) Toast.makeText(activity,"High temperature",Toast.LENGTH_LONG).show();
+                        if(readMessage.contains("1")) Toast.makeText(activity,"No need to accelerate this much",Toast.LENGTH_SHORT).show();
+                        if(readMessage.contains("2")) Toast.makeText(activity,"Do not press clutch while accelerating",Toast.LENGTH_SHORT).show();
+                        if(readMessage.contains("3")) Toast.makeText(activity,"Don't accelerate ehile pressing clutch",Toast.LENGTH_SHORT).show();
+
                         if (readMessage != null) {
 
                             activity.appendLog(readMessage, false, false, activity.needClean);
