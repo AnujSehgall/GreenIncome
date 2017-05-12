@@ -70,7 +70,7 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
             public void onClick(View v) {
 
                 if (position == 0) {
-                    Intent i = new Intent(mContext, RecycleBank.class);
+                    Intent i = new Intent(mContext, Recycler_bank.class);
                     mContext.startActivity(i);
 
                 }

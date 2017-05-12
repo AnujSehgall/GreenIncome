@@ -28,11 +28,19 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="40dp"
-            android:layout_marginTop="25dp"
-            android:layout_alignParentEnd="true"
+            android:layout_marginTop="525dp"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/ic_dest"
-            android:id="@+id/des_btn"/>
 
+            android:id="@+id/des_btn"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/des_btn"
+            android:layout_centerHorizontal="true"
+            android:background="#FFFFFF"
+            android:textSize="18dp"
+            android:text="Press to locate the recyclers"/>
 
 
 

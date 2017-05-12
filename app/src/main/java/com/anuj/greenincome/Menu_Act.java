@@ -39,7 +39,7 @@ public class Menu_Act extends AppCompatActivity {
     private AlbumsAdapter adapter;
     private List<Album> albumList;
     ImageView slidingimage;
-    public int index=0,no=5,i;
+    public int index=0,no=0,i;
     public String CName,Del="DELHI",uname="user";
     Animation animFadein;
 
@@ -71,7 +71,6 @@ public class Menu_Act extends AppCompatActivity {
             }
         }
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         final ImageView imageView = (ImageView) findViewById(R.id.seedimg);
 
@@ -91,7 +90,29 @@ public class Menu_Act extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //textInfo.setText(subEditText.getText().toString());
+
                 uname = subEditText.getText().toString();
+
+                if (uname.equals("anuj")|| uname.equals("Anuj")){
+                    no = 150;
+                }
+                else if (uname.equals("Abhishek")|| uname.equals("abhishek")){
+
+                    no = 220;
+                }
+                else if (uname.equals("Amogh")|| uname.equals("amogh")){
+
+                    no = 343;
+                }
+                else {
+                    no = 476;
+                }
+
+                SharedPreferences cd = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                cd.edit().putString("name", uname).apply();
+
+                SharedPreferences ef = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                ef.edit().putInt("seeds", no).apply();
                 Toast.makeText(getApplicationContext(),"Welcome "+subEditText.getText().toString(),Toast.LENGTH_SHORT).show();
                 TextView txtView = (TextView) findViewById(R.id.backdrop);
                 txtView.setText("Hello "+ uname + ", you have "+no+" seeds in your account");
@@ -104,10 +125,7 @@ public class Menu_Act extends AppCompatActivity {
             }
         });
 
-        SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor edito = preferences.edit();
-        edito.putString("Name",uname);
-        edito.apply();
+
 
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override

@@ -30,6 +30,9 @@
         <item name="android:windowCloseOnTouchOutside">true</item>
 
     </style>
+    <style name="ButtonStyle" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
 
     <style name="DialogTheme" parent="@android:style/Theme.Holo.Dialog"/>
 

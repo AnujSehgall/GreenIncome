@@ -13,6 +13,7 @@
     <color name="colorAccent">#E65100</color>
 
     <color name="colorname">#FFFFFF</color>
-
+    <color name="black_text">#333333</color>
+    <color name="black_text2">#666666</color>
     <color name="timestamp">#a0a3a7</color>
 </resources>

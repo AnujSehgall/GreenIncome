@@ -17,6 +17,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -50,7 +52,7 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
     public LatLng newlatlng,latLng,yellatlng;
     public ImageView et_dest;
     public String destination;
-    public EditText dest;
+    public AutoCompleteTextView dest;
     public Marker j1,j2,j3,i1,i2,i3;
 
 
@@ -61,7 +63,7 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
         setContentView(R.layout.activity_carpool);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        String[] ProgLanguages = { "yelahanka"};
 
         Button cht = (Button) findViewById(R.id.chat);
         cht.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +112,11 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     */
-         dest = (EditText) findViewById(R.id.dest);
+         dest = (AutoCompleteTextView) findViewById(R.id.dest);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.select_dialog_item, ProgLanguages);
+        dest.setThreshold(1);
+        dest.setAdapter(arrayAdapter);
 
 
 
@@ -126,8 +132,8 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
                     j1 = mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(13.119821, 77.632499))
                             .infoWindowAnchor(0.5f, 0.5f)
-                            .title("Title1")
-                            .snippet("Snippet1")
+                            .title("Akash")
+                            .snippet("5 km away")
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
                     ///mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
 
@@ -135,34 +141,34 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
                     mMap.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
 
                     j2 = mMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(13.122391, 77.633094))
+                            .position(new LatLng(13.124391, 77.623094))
                             .anchor(0.5f, 0.5f)
-                            .title("Title1")
-                            .snippet("Snippet1")
+                            .title("Abhinav")
+                            .snippet("3.7 km away")
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
                     j3 = mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(13.105748, 77.634098))
                             .anchor(0.5f, 0.5f)
-                            .title("Title1")
-                            .snippet("Snippet1")
+                            .title("Shivam")
+                            .snippet("2.5 km away")
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
                     i1 = mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(13.123873, 77.641645))
                             .anchor(0.5f, 0.5f)
-                            .title("Title1")
-                            .snippet("Snippet1")
+                            .title("Sasidhar")
+                            .snippet("4.2 km away")
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
                     i2 = mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(13.121386, 77.610504))
                             .anchor(0.5f, 0.5f)
-                            .title("Title1")
-                            .snippet("Snippet1")
+                            .title("Somanath")
+                            .snippet("3.6 km away")
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
                     i3 = mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(13.112254, 77.605357))
                             .anchor(0.5f, 0.5f)
-                            .title("Title1")
-                            .snippet("Snippet1")
+                            .title("Mohit")
+                            .snippet("1.6 km away")
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
 
                 }

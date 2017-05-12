@@ -64,13 +64,14 @@
             android:name=".bluetooth.DeviceListActivity"
             android:label="@string/select_device"
             android:theme="@style/DialogTheme" />
-        <activity android:name=".Login_act"></activity>
+        <activity android:name=".Login_act" />
 
         <service
             android:name=".MyServices"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
+        <activity android:name=".Recycler_bank"></activity>
     </application>
 
 </manifest>

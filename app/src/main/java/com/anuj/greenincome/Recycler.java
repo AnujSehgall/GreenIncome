@@ -125,43 +125,33 @@ public class Recycler extends AppCompatActivity implements OnMapReadyCallback, N
                     j1 = mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(13.119821, 77.632499))
                             .infoWindowAnchor(0.5f, 0.5f)
-                            .title("Title1")
-                            .snippet("Snippet1")
+                            .title("Mehta Recyclers")
+                            .snippet("3 km away")
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
                     ///mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
 
 
                     mMap.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
 
-                    j2 = mMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(13.122391, 77.633094))
-                            .anchor(0.5f, 0.5f)
-                            .title("Title1")
-                            .snippet("Snippet1")
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+
                     j3 = mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(13.105748, 77.634098))
                             .anchor(0.5f, 0.5f)
-                            .title("Title1")
-                            .snippet("Snippet1")
+                            .title("Aavishkar Scrap dealers")
+                            .snippet("2.2 km away")
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
                     i1 = mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(13.123873, 77.641645))
                             .anchor(0.5f, 0.5f)
-                            .title("Title1")
-                            .snippet("Snippet1")
+                            .title("Ravi Scraps")
+                            .snippet("3.1 km away")
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
-                    i2 = mMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(13.121386, 77.610504))
-                            .anchor(0.5f, 0.5f)
-                            .title("Title1")
-                            .snippet("Snippet1")
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
+
                     i3 = mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(13.112254, 77.605357))
                             .anchor(0.5f, 0.5f)
-                            .title("Title1")
-                            .snippet("Snippet1")
+                            .title("Green Scrappers")
+                            .snippet("3.6 km away")
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
 
 
