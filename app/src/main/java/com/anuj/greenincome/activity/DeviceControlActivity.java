@@ -70,8 +70,6 @@ public final class DeviceControlActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
 
 
-
-
         if (mHandler == null) mHandler = new BluetoothResponseHandler(this);
         else mHandler.setTarget(this);
 
@@ -80,12 +78,23 @@ public final class DeviceControlActivity extends BasicActivity {
         MSG_CONNECTED = getString(R.string.msg_connected);
 
         setContentView(R.layout.activity_terminal);
+
         if (isConnected() && (savedInstanceState != null)) {
             setDeviceName(savedInstanceState.getString(DEVICE_NAME));
         } else getActionBar().setSubtitle(MSG_NOT_CONNECTED);
 
         this.logHtml = new StringBuilder();
         if (savedInstanceState != null) this.logHtml.append(savedInstanceState.getString(LOG));
+
+        startbluetooth();
+
+    }
+
+    // ==========================================================================
+
+    void startbluetooth()
+    {
+
 
         txt = (TextView) findViewById(R.id.value);
         this.logTextView = (TextView) findViewById(R.id.log_textview);
@@ -122,39 +131,8 @@ public final class DeviceControlActivity extends BasicActivity {
             }
         });
         int j=0;
-        btn1 = (Button) findViewById(R.id.valuebut1);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                commandString="1";
-                sendCommand(null);
-                try {
-                    Thread.sleep(3000);
-                }
-                catch (InterruptedException e)
-                {
-                    e.printStackTrace();
-                }
-                commandString="0";
-                sendCommand(null);
-
-            }
-        });
-
-        btn2 = (Button) findViewById(R.id.valuebut2);
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-            }
-        });
 
     }
-
-    // ==========================================================================
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);

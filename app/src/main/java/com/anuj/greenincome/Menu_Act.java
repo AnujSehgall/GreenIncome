@@ -38,7 +38,7 @@ public class Menu_Act extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AlbumsAdapter adapter;
     private List<Album> albumList;
-    ImageView slidingimage;
+
     public int index=0,no=0,i;
     public String CName,Del="DELHI",uname="user";
     Animation animFadein;
@@ -110,6 +110,9 @@ public class Menu_Act extends AppCompatActivity {
 
                 SharedPreferences cd = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                 cd.edit().putString("name", uname).apply();
+
+
+
 
                 SharedPreferences ef = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                 ef.edit().putInt("seeds", no).apply();
