@@ -5,13 +5,16 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.speech.tts.TextToSpeech;
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,10 +34,15 @@ import com.anuj.greenincome.bluetooth.DeviceListActivity;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public final class DeviceControlActivity extends BasicActivity {
     private static final String DEVICE_NAME = "DEVICE_NAME";
     private static final String LOG = "LOG";
+
+    private final int REQ_CODE_SPEECH_INPUT = 100;
+
+    private TextToSpeech tts;
 
     // Подсветка crc
     private static final String CRC_OK = "#FFFF00";
@@ -92,9 +100,35 @@ public final class DeviceControlActivity extends BasicActivity {
 
     // ==========================================================================
 
+    public void tts(final String text)
+    {
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int result = tts.setLanguage(Locale.US);
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("TTS", "This Language is not supported");
+                    }
+                    speak(text);
+
+                } else {
+                    Log.e("TTS", "Initilization Failed!");
+                }
+            }
+        });
+
+    }
+
+    private void speak(String text){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+        }else{
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+        }
+    }
     void startbluetooth()
     {
-
 
         txt = (TextView) findViewById(R.id.value);
         this.logTextView = (TextView) findViewById(R.id.log_textview);
@@ -142,6 +176,7 @@ public final class DeviceControlActivity extends BasicActivity {
         }
     }
     // ============================================================================
+
 
 
     /**
@@ -428,6 +463,7 @@ public final class DeviceControlActivity extends BasicActivity {
             mActivity = new WeakReference<DeviceControlActivity>(target);
         }
 
+        String mssg;
         @Override
         public void handleMessage(Message msg) {
             DeviceControlActivity activity = mActivity.get();
@@ -453,7 +489,7 @@ public final class DeviceControlActivity extends BasicActivity {
 
                     case MESSAGE_READ:
                         final String readMessage = (String) msg.obj;
-                        if(readMessage.contains("0")) Toast.makeText(activity,"High temperature",Toast.LENGTH_LONG).show();
+                        if(readMessage.contains("0")) Toast.makeText(activity,"High temperature",Toast.LENGTH_SHORT).show();
                         if(readMessage.contains("1")) Toast.makeText(activity,"No need to accelerate this much",Toast.LENGTH_SHORT).show();
                         if(readMessage.contains("2")) Toast.makeText(activity,"Do not press clutch while accelerating",Toast.LENGTH_SHORT).show();
                         if(readMessage.contains("3")) Toast.makeText(activity,"Don't accelerate ehile pressing clutch",Toast.LENGTH_SHORT).show();

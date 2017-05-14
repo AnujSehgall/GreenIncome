@@ -5,8 +5,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.speech.tts.TextToSpeech;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ActivityCompat;
@@ -17,6 +19,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +35,7 @@ import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Menu_Act extends AppCompatActivity {
 
@@ -39,11 +43,15 @@ public class Menu_Act extends AppCompatActivity {
     private AlbumsAdapter adapter;
     private List<Album> albumList;
 
+    private TextToSpeech tts;
+
     public int index=0,no=0,i;
     public String CName,Del="DELHI",uname="user";
     Animation animFadein;
 
     ArrayList<String> slid= new ArrayList<String>();
+
+    private final int REQ_CODE_SPEECH_INPUT = 100;
 
     FloatingActionMenu materialDesignFAM;
     com.github.clans.fab.FloatingActionButton floatingActionButton1;
@@ -127,6 +135,7 @@ public class Menu_Act extends AppCompatActivity {
                 fadeIn.setFillAfter(true);
             }
         });
+
 
 
 
@@ -221,6 +230,33 @@ public class Menu_Act extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    public void tts(final String text)
+    {
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int result = tts.setLanguage(Locale.US);
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("TTS", "This Language is not supported");
+                    }
+                    speak(text);
+
+                } else {
+                    Log.e("TTS", "Initilization Failed!");
+                }
+            }
+        });
+
+    }
+
+    private void speak(String text){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+        }else{
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+        }
+    }
     /**
      * RecyclerView item decoration - give equal margin around grid item
      */
