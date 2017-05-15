@@ -3,16 +3,21 @@ package com.anuj.greenincome;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +27,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -39,7 +46,10 @@ import java.util.List;
 
 import static com.anuj.greenincome.R.id.map;
 
-public class Carpool extends AppCompatActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener {
+public class Carpool extends AppCompatActivity implements OnMapReadyCallback,GoogleMap.InfoWindowAdapter,
+        NavigationView.OnNavigationItemSelectedListener,
+        GoogleMap.OnInfoWindowClickListener,
+        View.OnClickListener{
 
 
     public int i;
@@ -54,6 +64,12 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
     public String destination;
     public AutoCompleteTextView dest;
     public Marker j1,j2,j3,i1,i2,i3;
+    private LinearLayout call;
+    private LinearLayout navigation;
+    private TextView nameTV;
+    private String agentName;
+    private TextView addrTV;
+
 
 
 
@@ -78,6 +94,7 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
                 .findFragmentById(map);
         mapFragment.getMapAsync(this);
 
+       // checkperm();
         //yellatlng= "13.119167, 77.635861"
         lat =13.119167; lng= 77.635861;
         yellatlng= new LatLng(lat, lng);
@@ -212,6 +229,36 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
 
 
     }
+
+    private void checkperm() {
+        if (ContextCompat.checkSelfPermission(Carpool.this,
+                android.Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(Carpool.this,
+                    android.Manifest.permission.CALL_PHONE)) {
+
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(Carpool.this,
+                        new String[]{android.Manifest.permission.CALL_PHONE},
+                        i);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }
+
+    }
+
     private void hideSoftKeyboard(){
         if(getCurrentFocus()!=null && getCurrentFocus() instanceof EditText){
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -233,6 +280,8 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        mMap.setInfoWindowAdapter(this);
+        mMap.setOnInfoWindowClickListener(this);
         Geocoder gc = new Geocoder(Carpool.this);
 
         List<Address> list = null;
@@ -351,5 +400,50 @@ public class Carpool extends AppCompatActivity implements OnMapReadyCallback, Na
         return true;
     }
 
+
+    @Override
+    public View getInfoWindow(Marker marker) {
+        View view = initView();
+        return view;
+    }
+
+    @Override
+    public View getInfoContents(Marker marker) {
+        return null;
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+
+    }
+    @NonNull
+    private View initView() {
+        View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.view_infowindow, null,false);
+        navigation = (LinearLayout) view.findViewById(R.id.navigation_LL);
+        call = (LinearLayout) view.findViewById(R.id.call_LL);
+        nameTV = (TextView) view.findViewById(R.id.name);
+        addrTV = (TextView) view.findViewById(R.id.addr);
+
+        nameTV.setText(agentName);
+        //addrTV.setText(String.format(getApplicationContext().getString(R.string.agent_addr),snippet));
+
+        navigation.setOnClickListener(this);
+        call.setOnClickListener(this);
+        return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id){
+            case R.id.navigation_LL:  //点击导航
+                Toast.makeText(getApplicationContext(),"1 clicked",Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.call_LL:  //点击打电话
+                Toast.makeText(getApplicationContext(),"2 clicked",Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
 
 }
